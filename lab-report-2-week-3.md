@@ -1,43 +1,40 @@
 # Part 1- Searching Engine
 
 ## raw code for my searching engine
-```import java.io.IOException;
+```
+import java.io.IOException;
 import java.net.URI;
 
 class Handler implements URLHandler {
     // The one bit of state on the server: a number that will be manipulated by
     // various requests.
-
+    String fruit = null;
 
     public String handleRequest(URI url) {
         if (url.getPath().equals("/")) {
-            return String.format("Not a valid Search! Please try again!");
-        } else if (url.getPath().equals("/apple")) {
-
-            return String.format("You are searching the fruit Apple");
-        } 
-        else if (url.getPath().equals("/Pineapple")) {
-
-            return String.format("You are searching the fruit pineapple");
-        }
-        else if (url.getPath().equals("/app")) {
-
-            return String.format("Which one do you want to search? Apple or Pineapple?");
-        }
-        else if (url.getPath().equals("/pear")) {
-
-            return String.format("You are searching the fruit pear");
-        }
-        else if (url.getPath().equals("/blueberry")) {
-
-            return String.format("You are searching the fruit blueberry");
-        }else {
+            return String.format("fruit %s", fruit);
+        } else {
+            System.out.println("Path: " + url.getPath());
+            if (url.getPath().contains("/add")) {
+                String[] parameters = url.getQuery().split("=");
+                if (parameters[0].equals("s")) {
+                    fruit = (String)parameters[1];
+                    return String.format("the fruit is now %s",fruit);
+                }
+            }
+            if (url.getPath().contains("/search")) {
+                String[] parameters = url.getQuery().split("=");
+                if (parameters[0].equals("s")) {
+                    fruit = (String)parameters[1];
+                    return String.format("the fruit is now %s",fruit);
+                }
+            }
             return "404 Not Found!";
         }
     }
 }
 
-class SearchEngine {
+class NumberServer {
     public static void main(String[] args) throws IOException {
         if(args.length == 0){
             System.out.println("Missing port number! Try any number between 1024 to 49151");
@@ -50,36 +47,50 @@ class SearchEngine {
     }
 }
 ```
-## Screenshots for my searching engine
-### 1.
-![image](app.PNG)
-For this first searching, I called
-```
-else if (url.getPath().equals("/app")) {
-
-            return String.format("Which one do you want to search? Apple or Pineapple?");
-        }
-```
-I use the easy way both for me to write and for people to search. They just need to search for app, they will be ask to search either apple or pineapple. Hence, they can search for what they want.
-### 2.
-![image](pear.PNG)
-For this first searching, I called
-```
-else if (url.getPath().equals("/pear")) {
-
-            return String.format("You are searching the fruit pear");
-        }
-```
-I use the easy way both for me to write and for people to search. They just need to search for pear, and the searching engine will reply that "You are searching the fruit pear".
-### 3.
-![image](not.PNG)
+### screenshot 1
+![image](method1.PNG)
+For this one, the line called is
 ```
 if (url.getPath().equals("/")) {
-            return String.format("Not a valid Search! Please try again!");
+            return String.format("fruit %s", fruit);
 ```
-However, if they are not searching anything, I will just let them to reenter the value which is valid. Hence, I print "Not a valid Search! Please try again!" to warn them.
+The arg is / since this is the simplest one. There is no other change form. Becuase if we are searching nothing, it should return fruit null. Null means nothing.
+### screenshot 2
+![image](method2.PNG)
+For this one, the line called is
+```
+System.out.println("Path: " + url.getPath());
+            if (url.getPath().contains("/add")) {
+                String[] parameters = url.getQuery().split("=");
+                if (parameters[0].equals("s")) {
+                    fruit = (String)parameters[1];
+                    return String.format("the fruit is now %s",fruit);
+                }
+            }
+```
+The arg is /add?s=apple. The parameter[0] is s. Only if the first part split by = is s, the method will work. In addition it will store the parameter[1] into a string variable called fruit. When we put apple as a arg, it will return the fruit is now apple. Hence, no matter what fruit we input, it will return on the webpage.
 
+### screenshot 3
+![image](method3.PNG)
+For this one, the line called is
+```
+if (url.getPath().contains("/search")) {
+                String[] parameters = url.getQuery().split("=");
+                if (parameters[0].equals("s")) {
+                    fruit = (String)parameters[1];
+                    return String.format("the fruit is now %s",fruit);
+                }
+            }
+```
+The arg is /search?s=apple. The parameter[0] is s. Only if the first part split by = is s, the method will work. In addition it will store the parameter[1] into a string variable called fruit. When we put pear as a arg, it will return the fruit is now pear. Hence, no matter what fruit we input, it will return on the webpage.
 
+### screenshot 4
+![image](method4.PNG)
+For this one, the line called is
+```
+return "404 Not Found!";
+```
+This is simply if we are not inputting the right query or sytax. It will return 404 not found.
 # Part 2- Debugg
 ## 1. bug in ArrayExamples.java
 ### reversed method
