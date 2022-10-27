@@ -94,6 +94,8 @@ This is simply if we are not inputting the right query or sytax. It will return 
 # Part 2- Debugg
 ## 1. bug in ArrayExamples.java
 ### reversed method
+![image](false1.PNG)
+## I am so sorry that I can not find the original file.So that I cannot do the screenshot for syptoms. But the only bug here is that the lin 15 create an empty list. Hence, the system just skip the for loop and print arr.
 ![image](array.PNG)
 (just to be cleared, all the screenshots are after I fixed the bug!)
 In this picture, original version doesn't have the line newArray = arr.clon(). In this case, the first linke of the method will just create a new integer list with the length of arr but completely empty in it. Hence, when we call the for loop to iterate over the whole list and set arr[i] = newArray[arr.length - i - 1], we will not going to the loop beucase the list is empty. Hence, when we return arr, we will just get what we input. However, since I have add the method .clone() to give the new list some contenet, the method reversed can be functional.
@@ -101,6 +103,8 @@ In this picture, original version doesn't have the line newArray = arr.clon(). I
 
 ## 2. bug in ListExamples.java
 ### filter method
+![image](filter.PNG)
+## I am so sorry that I can not find the original file.So that I cannot do the screenshot for syptoms. But the bugs here is firt in the if statement, we need == true. Second, we actually need to write a interface with method StringChecker. Or this file will not run.
 ![image](list.PNG)
 (just to be cleared, all the screenshots are after I fixed the bug!)
 In this method, the original method was missing the interface. Without the interface, we cannot even call the method. Also, the if statement also missed == sign to prove that the filter return true. If we don't have == true, we will loop forever and put all the element into result. Hence, I wrote the interface right below.
