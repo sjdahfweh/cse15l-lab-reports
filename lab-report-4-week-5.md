@@ -2,25 +2,22 @@
 ## Part-1 In DocSearchServer.java, change the name of the start parameter of getFiles, and all of its uses, to instead be called base.
 
 I will use the easiest way to replace all the start into base.
-### the first step is to open the java file DocSearchServer.java using vim
-![image](lab6-1.PNG)
-After we use vim open the document, we will find the code shows up in the screen.
-![iamge](lab6-11.PNG)
-Hence, we can see all the code in ths DocSearchServer.java.
-Then, we use the code ```:1,25s/start/base/g```
-This command has four separate part. The first part is 1,25s which means substitute the first three code and keep the last item. 1,25 means from line 1 to line 25. the second part the is start whcih is the find all  part. We are trying to find all the start in this file. The third part is to substitute. And g is the command to replace all. We replace all the start with base. Hnece we can find all the code of start and replace them with base. 
-![image](lab6-4.PNG)
-we can see in this picture. After I press enter, all the start has been replaced with base.
-![image](lab6-5.PNG)
-Finally, never forget to use :wq to save and quit this file.
 
-### step 2
-Now, after I have a breif description of what I did. Let's write it out in a formal way.
-1. vim DocSearchServer.java <Enter>
-2. <shift>+; to get :1,25s/start/base/g <Enter>
-3. <shift>+; to get :wq <Enter>
+### command Line: `/vim DocSearchServer.java<enter>:1,25s/start/base/g<Enter>:wq<Enter>`
+1. ![image](lab-report-4-1.PNG)
+After I type vim DocSearchServer.java with enter, the screenshots shows the code of the file. The cursor automatically move at r of result.
 
-and this is all the command I use for the task. After I counted it, I totally pressed 24 keys if we don't count vim DocSearchServer.java.
+2. ![image](lab-report-4-2.PNG)
+When I type :1,25s/start/base/g, the cursor move to the first start in the document 
+
+3. ![image](lab-report-4-3.PNG)
+After I press enter, the start from line 1 to 25 change to base, and the cursor move to r.
+
+4. ![image](lab-report-4-4.PNG)
+This is when I type :wq without enter, the cursor move after the q
+
+5. ![image](lab-report-4-5.PNG)
+Finally, when I press enter, the vim closed and the file save the change and quit
 
 # Part 2
 
